@@ -3,37 +3,49 @@ import styled from 'styled-components/native';
 export default {
   Container: styled.SafeAreaView`
     flex: 1;
-    padding: 20px;
     background-color: #f5f6fa;
   `,
-  Logo: styled.Image`
-    width: 250px;
-    height: 250px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
+  Scroller: styled.ScrollView`
+    flex: 1;
+    padding: 20px;
   `,
-  Field: styled.TextInput`
-    border-width: 1px;
-    border-color: #ccc;
-    border-radius: 8px;
-    background-color: #fff;
-    padding: 16px;
-    color: #000;
+  BigArea: styled.View`
+    magin: 50px 0;
+    align-items: center;
+  `,
+  LoadingIcon: styled.ActivityIndicator``,
+  HeadTitle: styled.Text`
     font-size: 16px;
-    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 10px;
+    color: #000;
   `,
-  ButtonArea: styled.TouchableOpacity`
+  ExitButtonArea: styled.TouchableOpacity`
     background-color: #8863e6;
-    padding: 12px;
+    padding: 15px;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
-    margin-bottom: 15px;
   `,
-  ButtonText: styled.Text`
+  ExitButtonText: styled.Text`
     color: #fff;
     font-size: 16px;
+    font-weight: bold;
+  `,
+  PropertyList: styled.View`
+    margin: 20px 0;
+  `,
+  ButtonArea: styled.TouchableOpacity`
+    background-color: #fff;
+    border-width: 2px;
+    border-color: #e8e9ed;
+    border-radius: 20px;
+    padding: 15px;
+    align-items: center;
+    margin-bottom: 10px;
+  `,
+  ButtonText: styled.Text`
+    font-size: 16px;
+    color: #000;
     font-weight: bold;
   `,
 };

@@ -22,13 +22,13 @@ export default () => {
 
   const handleRegisterButton = async () => {
     if (name && email && cpf && password && passwordConfirm) {
-      let response = await api.post('auth/register', {
+      let response = await api.register(
         name,
-        email,
         cpf,
+        email,
         password,
-        passwordConfirm,
-      });
+        passwordConfirm
+      );
       if (response.error === '') {
         dispatch({ type: 'setToken', payload: { token: response.token } });
 
@@ -71,7 +71,7 @@ export default () => {
       />
       <C.Field
         placeholder="Confirme sua Senha"
-        secureTextEntry={true}
+        // secureTextEntry={true}
         value={passwordConfirm}
         onChangeText={(t) => setPasswordConfirm(t)}
       />

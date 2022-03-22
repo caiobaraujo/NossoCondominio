@@ -52,6 +52,7 @@ export default {
     let token = await AsyncStorage.getItem('token');
     let response = await request('post', 'auth/logout', {}, token);
     await AsyncStorage.removeItem('token');
+    await AsyncStorage.removeItem('property');
     return response;
   },
   register: async (name, cpf, email, password, passwordConfirm) => {
@@ -62,6 +63,11 @@ export default {
       password,
       passwordConfirm,
     });
+    return response;
+  },
+  getWall: async () => {
+    let token = await AsyncStorage.getItem('token');
+    let response = await request('get', 'walls', {}, token);
     return response;
   },
 };
