@@ -70,4 +70,59 @@ export default {
     let response = await request('get', 'walls', {}, token);
     return response;
   },
+  likeWallPost: async (id) => {
+    let token = await AsyncStorage.getItem('token');
+    let response = await request('post', `wall/${id}/like`, {}, token);
+    return response;
+  },
+  getDocs: async () => {
+    let token = await AsyncStorage.getItem('token');
+    let response = await request('get', 'docs', {}, token);
+    return response;
+  },
+  getBillets: async () => {
+    let token = await AsyncStorage.getItem('token');
+    let property = await AsyncStorage.getItem('property');
+    property = JSON.parse(property);
+    let response = await request(
+      'get',
+      'billets',
+      {
+        property: property.id,
+      },
+      token
+    );
+    return response;
+  },
+  getWarnings: async () => {
+    let token = await AsyncStorage.getItem('token');
+    let property = await AsyncStorage.getItem('property');
+    property = JSON.parse(property);
+    let response = await request(
+      'get',
+      'warnings',
+      {
+        property: property.id,
+      },
+      token
+    );
+    return response;
+  },
+  addWarning: async (title, list) => {
+    let token = await AsyncStorage.getItem('token');
+    let property = await AsyncStorage.getItem('property');
+    property = JSON.parse(property);
+    let response = await request(
+      'post',
+      'warning',
+      {
+        title,
+        list,
+
+        property: property.id,
+      },
+      token
+    );
+    return response;
+  },
 };

@@ -4,29 +4,29 @@ import api from '../../services/api';
 import { useNavigation } from '@react-navigation/native';
 import { useStateValue } from '../../contexts/StateContext';
 
-import WallItem from '../../components/WallItem';
+import DocItem from '../../components/DocItem';
 
 export default () => {
   const navigation = useNavigation();
   const [context, dispatch] = useStateValue();
 
   const [loading, setLoading] = useState(true);
-  const [wallList, setWallList] = useState([]);
+  const [docList, setDocList] = useState([]);
 
   useEffect(() => {
     navigation.setOptions({
-      headerTitle: 'Mural de Avisos',
+      headerTitle: 'Boletos',
     });
-    getWall();
+    getBillets();
   }, []);
 
-  const getWall = async () => {
-    setWallList([]);
+  const getBillets = async () => {
+    setDocList([]);
     setLoading(true);
-    const result = await api.getWall();
+    const result = await api.getBillets();
     setLoading(false);
     if (result.error === '') {
-      setWallList(result.list);
+      setDocList(result.list);
     } else {
       alert(result.error);
     }
@@ -34,17 +34,17 @@ export default () => {
 
   return (
     <C.Container>
-      {!loading && wallList.length === 0 && (
+      {!loading && docList.length === 0 && (
         <C.NoListArea>
-          <C.NoListText>Não há nenhum aviso no mural</C.NoListText>
+          <C.NoListText>Não há Boletos desta unidade</C.NoListText>
         </C.NoListArea>
       )}
       <C.List
-        data={wallList}
-        onRefresh={getWall}
+        data={docList}
+        onRefresh={getBillets}
         refreshing={loading}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <WallItem data={item} />}
+        renderItem={({ item }) => <DocItem data={item} />}
       ></C.List>
     </C.Container>
   );
