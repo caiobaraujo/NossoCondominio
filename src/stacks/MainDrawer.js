@@ -6,6 +6,7 @@ import DrawerCuston from '../components/DrawerCuston';
 import BilletScreen from '../screens/BilletScreen';
 import WarningScreen from '../screens/WarningScreen';
 import WarningAddScreen from '../screens/WarningAddScreen';
+import ReservationScreen from '../screens/ReservationScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -28,6 +29,7 @@ export default () => {
       <Drawer.Screen name="BilletScreen" component={BilletScreen} />
       <Drawer.Screen name="WarningScreen" component={WarningScreen} />
       <Drawer.Screen name="WarningAddScreen" component={WarningAddScreen} />
+      <Drawer.Screen name="ReservationScreen" component={ReservationScreen} />
     </Drawer.Navigator>
   );
 };

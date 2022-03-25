@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const baseUrl = 'https://api.b7web.com.br/devcond/api';
 
+// essa funçao meio que simula um axios
 const request = async (method, endpoint, params, token = null) => {
   method = method.toLowerCase();
   let fullUrl = `${baseUrl}/${endpoint}`;
@@ -123,6 +124,11 @@ export default {
       },
       token
     );
+    return response;
+  },
+  getReservations: async () => {
+    let token = await AsyncStorage.getItem('token');
+    let response = await request('get', 'reservations', {}, token);
     return response;
   },
 };
