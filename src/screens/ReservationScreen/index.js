@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import C from './style';
-import api from '../../services/api';
+
 import { useNavigation } from '@react-navigation/native';
 import { useStateValue } from '../../contexts/StateContext';
-
-import DocItem from '../../components/DocItem';
+import ReservationItem from '../../components/ReservationItem';
 
 export default () => {
   const navigation = useNavigation();
@@ -13,29 +12,57 @@ export default () => {
   const [loading, setLoading] = useState(true);
   const [list, setList] = useState([]);
 
+  const lista = [
+    {
+      id: 1,
+      title: 'Piscina',
+      image:
+        'https://www.marol.com.br/blog/wp-content/uploads/2020/04/piscina-de-fibra-1030x687.jpg',
+      dates: ['Segunda à Sexta: 8:00 às 18:00'],
+    },
+    {
+      id: 2,
+      title: 'Academia',
+      image:
+        'https://scproduction.s3.sa-east-1.amazonaws.com/wysiwyg_uploads/cms/images/2018/10/01/19/07-h9ytse3i.JPG',
+      dates: ['Segunda à Sexta: 8:00 às 18:00'],
+    },
+    {
+      id: 3,
+      title: 'Churrasqueira',
+      image:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsCa832R433DZe1Y2GlAZc0Zpog5pZ5tanPw&usqp=CAU',
+      dates: ['Segunda à Sexta: 8:00 às 18:00'],
+    },
+    {
+      id: 4,
+      title: 'Piscina de novo',
+      image:
+        'https://www.marol.com.br/blog/wp-content/uploads/2020/04/piscina-de-fibra-1030x687.jpg',
+      dates: ['Segunda à Sexta: 8:00 às 18:00'],
+    },
+  ];
+
   useEffect(() => {
     navigation.setOptions({
       headerTitle: 'Reservas Disponíveis',
     });
-    getReservations();
+    getReservations(lista);
   }, []);
 
-  const getReservations = async () => {
+  const getReservations = (lista) => {
     setList([]);
     setLoading(true);
-    const result = await api.getReservations();
+    setList(lista);
     setLoading(false);
-    if (result.error === '') {
-      setList(result.list);
-    } else {
-      alert(result.error);
-    }
   };
 
   return (
     <C.Container>
-      <C.Scroller>
-        <C.ButtonArea onPress={null}>
+      <C.Scroller contentContainerStyle={{ paddingBottom: 40 }}>
+        <C.ButtonArea
+          onPress={() => navigation.navigate('ReservationMyScreen')}
+        >
           <C.ButtonText>Minhas Reservas</C.ButtonText>
         </C.ButtonArea>
         <C.Title>Selecione uma Área</C.Title>
@@ -43,8 +70,13 @@ export default () => {
         {loading && <C.LoadingIcon size="large" cor="#8863e6" />}
 
         {!loading && list.length === 0 && (
-          <C.NoListText>Nenhuma reserva disponível</C.NoListText>
+          <C.NoListArea>
+            <C.NoListText>Nenhuma reserva disponível</C.NoListText>
+          </C.NoListArea>
         )}
+        {list.map((item, id) => (
+          <ReservationItem key={id} data={item} />
+        ))}
       </C.Scroller>
     </C.Container>
   );
