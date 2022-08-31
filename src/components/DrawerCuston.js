@@ -12,13 +12,13 @@ const DrawerArea = styled.View`
 `;
 
 const DrawerLogoArea = styled.View`
-  padding: 10px 20px;
+  padding: 5px 10px;
   border-bottom-width: 1px;
   border-bottom-color: #eee;
 `;
 const DrawerLogo = styled.Image`
-  width: 190px;
-  height: 40px;
+  width: 220px;
+  height: 60px;
 `;
 const DrawerScroller = styled.ScrollView`
   flex: 1;
