@@ -114,7 +114,7 @@ export default (props) => {
     <DrawerArea>
       <DrawerLogoArea>
         <DrawerLogo
-          source={require('../assets/homelogo.png')}
+          source={require('../assets/NossoCondominio01.png')}
           resizeMode="contain"
         />
       </DrawerLogoArea>
